@@ -1660,7 +1660,7 @@ function initLaporanCharts(all, completed) {
         labels: all.map(c => c.nama || 'Siklus'),
         datasets: [
           { label: 'Total Modal', data: all.map(c => c.r?.totalModal||0), backgroundColor: 'rgba(239,68,68,0.7)', borderRadius: 6 },
-          { label: 'Best Margin', data: all.map(c => Math.max(0, c.actual?.marginActual ?? c.r?.bestScenario?.margin||0)), backgroundColor: 'rgba(16,185,129,0.7)', borderRadius: 6 },
+          { label: 'Best Margin', data: all.map(c => Math.max(0, (c.actual?.marginActual ?? c.r?.bestScenario?.margin) || 0)), backgroundColor: 'rgba(16,185,129,0.7)', borderRadius: 6 },
         ]
       },
       options: {
