@@ -246,7 +246,7 @@ function initApp() {
     <div class="toast-container" id="toast-container"></div>
   `;
 
-  navigate('dashboard');
+  requestAnimationFrame(() => navigate('dashboard'));
 }
 
 function toggleSidebar() {
