@@ -345,20 +345,33 @@ const Kalkulasi = {
 
   // ── Hari Raya Bali Calendar ───────────────────────────────
   // Galungan cycle: every 210 days (Pawukon calendar)
+  // Tanggal akurat berdasarkan kalender Pawukon Bali
   nextHariRaya() {
-    // Known Galungan dates 2026
-    const galunganDates2026 = [
-      new Date('2026-01-07'),
-      new Date('2026-07-06'),
+    const galunganDates = [
+      // 2026
+      new Date('2026-06-17'), // Galungan
+      new Date('2026-06-27'), // Kuningan (+10 hari)
+      new Date('2026-12-14'), // Galungan
+      new Date('2026-12-24'), // Kuningan (+10 hari)
+      // 2027
+      new Date('2027-07-12'), // Galungan
+      new Date('2027-07-22'), // Kuningan (+10 hari)
     ];
+
     const now = new Date();
-    let next = galunganDates2026.find(d => d > now);
-    if (!next) next = new Date('2027-01-27');
+    now.setHours(0, 0, 0, 0);
+
+    let next = galunganDates.find(d => d >= now);
+    if (!next) next = galunganDates[galunganDates.length - 1];
+
+    const namaHariRaya = [
+      '2026-06-17','2026-12-14','2027-07-12'
+    ].includes(next.toISOString().slice(0,10)) ? 'Galungan' : 'Kuningan';
 
     const daysUntil = Math.ceil((next - now) / (1000 * 60 * 60 * 24));
     return {
       date: next,
-      nama: 'Galungan',
+      nama: namaHariRaya,
       daysUntil,
       dateStr: next.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
     };
