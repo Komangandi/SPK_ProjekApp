@@ -82,9 +82,39 @@ def render_ahp_page():
 
 def render_decision_matrix_page():
     st.header("Matriks Keputusan")
+    st.caption("Studi Kasus: Penentuan Prioritas Wilayah Pengembangan Infrastruktur Fiber Optic – Desa Abian Tuwung, Kab. Tabanan")
     
     kriteria = db.get_kriteria()
     alternatif = db.get_alternatif()
+    
+    # --- Panel Info Studi Kasus ---
+    with st.expander("ℹ️ Lihat Referensi Kriteria & Alternatif Studi Kasus", expanded=False):
+        col_k, col_a = st.columns(2)
+        with col_k:
+            st.markdown("**Kriteria Penilaian (12 Kriteria)**")
+            import pandas as _pd
+            df_k = _pd.DataFrame([
+                {"Kode": k['kode'], "Nama Kriteria": k['nama'], "Jenis": k['jenis'].capitalize()}
+                for k in kriteria
+            ])
+            st.dataframe(df_k, use_container_width=True, hide_index=True)
+        with col_a:
+            st.markdown("**Alternatif – Banjar di Desa Abian Tuwung (13 Banjar)**")
+            df_a = _pd.DataFrame([
+                {"Kode": a['kode'], "Nama Banjar": a['nama']}
+                for a in alternatif
+            ])
+            st.dataframe(df_a, use_container_width=True, hide_index=True)
+        
+        st.divider()
+        st.warning("⚠️ Gunakan tombol di bawah **hanya jika** data di database masih berisi nama generik (mis. 'Kriteria 1', 'Banjar 1').")
+        if st.button("🔄 Reset & Perbarui Data Studi Kasus ke Database", type="secondary"):
+            try:
+                db.reset_seed_kriteria_alternatif()
+                st.success("✅ Data kriteria dan alternatif berhasil diperbarui sesuai studi kasus! Silakan refresh halaman.")
+                st.rerun()
+            except Exception as e:
+                st.error(f"Gagal reset data: {e}")
     
     kriteria_names = [k['kode'] for k in kriteria]
     alternatif_names = [a['nama'] for a in alternatif]
@@ -103,7 +133,7 @@ def render_decision_matrix_page():
     else:
         df['Alternatif'] = alternatif_names
         
-    st.write("Isi nilai performa untuk masing-masing alternatif terhadap kriteria.")
+    st.write("Isi nilai performa untuk masing-masing alternatif terhadap kriteria (skala 1–5).")
     
     # Gunakan data_editor
     edited_df = st.data_editor(df, use_container_width=True, disabled=['Alternatif'])
