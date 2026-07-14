@@ -43,8 +43,18 @@ def init_seed_data():
     kriteria = supabase.table('kriteria').select('*').limit(1).execute().data
     if not kriteria:
         kriteria_data = [
-            {'kode': f'C{i+1}', 'nama': f'Kriteria {i+1}', 'jenis': 'benefit' if i % 2 == 0 else 'cost'}
-            for i in range(12)
+            {'kode': 'C1',  'nama': 'Jumlah Penduduk',                      'jenis': 'benefit'},
+            {'kode': 'C2',  'nama': 'Potensi Pelanggan',                     'jenis': 'benefit'},
+            {'kode': 'C3',  'nama': 'Kepadatan Permukiman',                  'jenis': 'benefit'},
+            {'kode': 'C4',  'nama': 'Aksesibilitas Lokasi',                  'jenis': 'benefit'},
+            {'kode': 'C5',  'nama': 'Tingkat Kebutuhan Internet',            'jenis': 'benefit'},
+            {'kode': 'C6',  'nama': 'Potensi Pertumbuhan Wilayah',           'jenis': 'benefit'},
+            {'kode': 'C7',  'nama': 'Jarak dari Jaringan Existing',          'jenis': 'cost'},
+            {'kode': 'C8',  'nama': 'Ketersediaan Infrastruktur Pendukung',  'jenis': 'benefit'},
+            {'kode': 'C9',  'nama': 'Potensi Pendapatan',                    'jenis': 'benefit'},
+            {'kode': 'C10', 'nama': 'Tingkat Permintaan Layanan',            'jenis': 'benefit'},
+            {'kode': 'C11', 'nama': 'Estimasi Biaya Pembangunan',            'jenis': 'cost'},
+            {'kode': 'C12', 'nama': 'Tingkat Kesulitan Instalasi',           'jenis': 'cost'},
         ]
         supabase.table('kriteria').insert(kriteria_data).execute()
 
@@ -52,10 +62,61 @@ def init_seed_data():
     alternatif = supabase.table('alternatif').select('*').limit(1).execute().data
     if not alternatif:
         alternatif_data = [
-            {'kode': f'A{i+1}', 'nama': f'Banjar {i+1}'}
-            for i in range(13)
+            {'kode': 'A1',  'nama': 'Banjar Koripan Kaja'},
+            {'kode': 'A2',  'nama': 'Banjar Koripan Kelod'},
+            {'kode': 'A3',  'nama': 'Banjar Taman Surodadi'},
+            {'kode': 'A4',  'nama': 'Banjar Suralaga'},
+            {'kode': 'A5',  'nama': 'Banjar Tapesan'},
+            {'kode': 'A6',  'nama': 'Banjar Pangkung Nyuling'},
+            {'kode': 'A7',  'nama': 'Banjar Yangapi'},
+            {'kode': 'A8',  'nama': 'Banjar Balu'},
+            {'kode': 'A9',  'nama': 'Banjar Pasekan'},
+            {'kode': 'A10', 'nama': 'Banjar Abiantuwung Kaja'},
+            {'kode': 'A11', 'nama': 'Banjar Abiantuwung Kelod'},
+            {'kode': 'A12', 'nama': 'Banjar Dakdakan'},
+            {'kode': 'A13', 'nama': 'Banjar Ganter'},
         ]
         supabase.table('alternatif').insert(alternatif_data).execute()
+
+# Reset & Re-seed Kriteria & Alternatif (untuk update data lama)
+def reset_seed_kriteria_alternatif():
+    """Hapus data lama dan isi ulang dengan data studi kasus yang benar."""
+    # Reset kriteria
+    supabase.table('kriteria').delete().neq('id', 0).execute()
+    kriteria_data = [
+        {'kode': 'C1',  'nama': 'Jumlah Penduduk',                      'jenis': 'benefit'},
+        {'kode': 'C2',  'nama': 'Potensi Pelanggan',                     'jenis': 'benefit'},
+        {'kode': 'C3',  'nama': 'Kepadatan Permukiman',                  'jenis': 'benefit'},
+        {'kode': 'C4',  'nama': 'Aksesibilitas Lokasi',                  'jenis': 'benefit'},
+        {'kode': 'C5',  'nama': 'Tingkat Kebutuhan Internet',            'jenis': 'benefit'},
+        {'kode': 'C6',  'nama': 'Potensi Pertumbuhan Wilayah',           'jenis': 'benefit'},
+        {'kode': 'C7',  'nama': 'Jarak dari Jaringan Existing',          'jenis': 'cost'},
+        {'kode': 'C8',  'nama': 'Ketersediaan Infrastruktur Pendukung',  'jenis': 'benefit'},
+        {'kode': 'C9',  'nama': 'Potensi Pendapatan',                    'jenis': 'benefit'},
+        {'kode': 'C10', 'nama': 'Tingkat Permintaan Layanan',            'jenis': 'benefit'},
+        {'kode': 'C11', 'nama': 'Estimasi Biaya Pembangunan',            'jenis': 'cost'},
+        {'kode': 'C12', 'nama': 'Tingkat Kesulitan Instalasi',           'jenis': 'cost'},
+    ]
+    supabase.table('kriteria').insert(kriteria_data).execute()
+
+    # Reset alternatif
+    supabase.table('alternatif').delete().neq('id', 0).execute()
+    alternatif_data = [
+        {'kode': 'A1',  'nama': 'Banjar Koripan Kaja'},
+        {'kode': 'A2',  'nama': 'Banjar Koripan Kelod'},
+        {'kode': 'A3',  'nama': 'Banjar Taman Surodadi'},
+        {'kode': 'A4',  'nama': 'Banjar Suralaga'},
+        {'kode': 'A5',  'nama': 'Banjar Tapesan'},
+        {'kode': 'A6',  'nama': 'Banjar Pangkung Nyuling'},
+        {'kode': 'A7',  'nama': 'Banjar Yangapi'},
+        {'kode': 'A8',  'nama': 'Banjar Balu'},
+        {'kode': 'A9',  'nama': 'Banjar Pasekan'},
+        {'kode': 'A10', 'nama': 'Banjar Abiantuwung Kaja'},
+        {'kode': 'A11', 'nama': 'Banjar Abiantuwung Kelod'},
+        {'kode': 'A12', 'nama': 'Banjar Dakdakan'},
+        {'kode': 'A13', 'nama': 'Banjar Ganter'},
+    ]
+    supabase.table('alternatif').insert(alternatif_data).execute()
 
 # CRUD Functions
 def authenticate_user(username, password):
