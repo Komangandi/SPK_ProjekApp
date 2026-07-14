@@ -78,6 +78,55 @@ Alternatif diurutkan berdasarkan nilai preferensi $Y_i$. Semakin besar nilai $Y_
 
 ---
 
+## 📋 Kriteria dan Alternatif
+
+Pada penelitian ini, proses pengambilan keputusan dilakukan dengan mengevaluasi 13 alternatif lokasi pengembangan jaringan *Fiber Optic* berdasarkan 12 kriteria yang telah ditentukan. Kriteria tersebut diperoleh dari hasil identifikasi kebutuhan perusahaan dan divalidasi oleh para *Decision Maker (DM)* melalui metode AHP. Selanjutnya, seluruh alternatif dinilai menggunakan skala 1–5 sesuai kondisi objektif di lapangan.
+
+### Kriteria Penilaian
+
+Kriteria yang digunakan dalam penelitian terdiri atas 12 indikator sebagai berikut:
+
+| Kode | Kriteria | Jenis |
+| :---: | :--- | :---: |
+| **C1** | Jumlah Penduduk | Benefit |
+| **C2** | Potensi Pelanggan | Benefit |
+| **C3** | Kepadatan Permukiman | Benefit |
+| **C4** | Aksesibilitas Lokasi | Benefit |
+| **C5** | Tingkat Kebutuhan Internet | Benefit |
+| **C6** | Potensi Pertumbuhan Wilayah | Benefit |
+| **C7** | Jarak dari Jaringan Existing | Cost |
+| **C8** | Ketersediaan Infrastruktur Pendukung | Benefit |
+| **C9** | Potensi Pendapatan | Benefit |
+| **C10** | Tingkat Permintaan Layanan | Benefit |
+| **C11** | Estimasi Biaya Pembangunan | Cost |
+| **C12** | Tingkat Kesulitan Instalasi | Cost |
+
+Berdasarkan klasifikasi tersebut, terdapat 9 kriteria bertipe *Benefit* (C1, C2, C3, C4, C5, C6, C8, C9, dan C10) serta 3 kriteria bertipe *Cost* (C7, C11, dan C12).
+
+### Alternatif Penilaian
+
+Alternatif yang dievaluasi dalam penelitian ini merupakan 13 banjar di Desa Abian Tuwung yang menjadi kandidat lokasi pengembangan jaringan *Fiber Optic*.
+
+| Kode | Nama Alternatif |
+| :---: | :--- |
+| **A1** | Banjar Koripan Kaja |
+| **A2** | Banjar Koripan Kelod |
+| **A3** | Banjar Taman Surodadi |
+| **A4** | Banjar Suralaga |
+| **A5** | Banjar Tapesan |
+| **A6** | Banjar Pangkung Nyuling |
+| **A7** | Banjar Yangapi |
+| **A8** | Banjar Balu |
+| **A9** | Banjar Pasekan |
+| **A10** | Banjar Abiantuwung Kaja |
+| **A11** | Banjar Abiantuwung Kelod |
+| **A12** | Banjar Dakdakan |
+| **A13** | Banjar Ganter |
+
+Seluruh alternatif kemudian disusun ke dalam matriks keputusan (*decision matrix*) berukuran 13 × 12, yaitu terdiri atas 13 alternatif dan 12 kriteria, yang selanjutnya digunakan sebagai dasar perhitungan pada metode Hybrid AHP–MOORA. Setiap nilai pada matriks merupakan hasil penilaian objektif menggunakan skala 1–5, di mana nilai yang lebih tinggi menunjukkan kondisi yang semakin baik untuk kriteria bertipe *benefit*, sedangkan untuk kriteria bertipe *cost* akan diperlakukan sesuai mekanisme perhitungan metode MOORA.
+
+---
+
 ## 🌟 Fitur Utama Aplikasi
 - **Multi-user Role**: Admin, DM 1-4 (*Decision Makers*), dan Pimpinan.
 - **AHP**: Perhitungan matriks kuesioner otomatis dan *Geometric Mean* untuk menggabungkan 4 DM, disertai *Consistency Ratio (CR)*.
